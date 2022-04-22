@@ -1,5 +1,7 @@
 import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/models/Product.dart';
+import 'package:ecommerce/screens/details/component/color_and_size.dart';
+import 'package:ecommerce/screens/details/component/product_title_with_image.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
@@ -19,6 +21,7 @@ class Body extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(
                     top: size.height * 0.3),
+                    padding: EdgeInsets.only(top: size.height * 0.12, left: kDefaultPaddin),
                     height: 500,
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -27,23 +30,14 @@ class Body extends StatelessWidget {
                         topRight: Radius.circular(24)
                         ),
                         ),
+                        child: Column(
+                          children: <Widget>[
+                            ColorAndSize(product: product),
+                            Description(product: product)
+                          ],
+                        ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-                  child: Column(
-                    children: const <Widget>[
-                      Text("Aristocratic Hand Bag",
-                      style: TextStyle(
-                      color: Colors.white),
-                      ),
-                      Text(product.title,
-                      style: Theme.of(context)
-                      .textTheme
-                      .headline4
-                      ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),)
-                    ],
-                  ),
-                )
+                ProductTitleWithImage(product: product)
               ],
             ),
             )
@@ -52,3 +46,25 @@ class Body extends StatelessWidget {
     );
   }
 }
+
+class Description extends StatelessWidget {
+  const Description({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+      child: Text(
+        product.description,
+        style: TextStyle(height: 1.5),),
+    );
+  }
+}
+
+
+
