@@ -1,8 +1,14 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/models/Product.dart';
 import 'package:ecommerce/screens/details/component/color_and_size.dart';
+import 'package:ecommerce/screens/details/component/description.dart';
 import 'package:ecommerce/screens/details/component/product_title_with_image.dart';
 import 'package:flutter/material.dart';
+
+import 'add_to_cart.dart';
+import 'counter_with_fav_btn.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -33,7 +39,12 @@ class Body extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             ColorAndSize(product: product),
-                            Description(product: product)
+                            SizedBox(height: kDefaultPaddin/2,),
+                            Description(product: product),
+                            SizedBox(height: kDefaultPaddin/2,),
+                            const CounterWithFavBtn(),
+                            SizedBox(height: kDefaultPaddin/2,),
+                            AddToCart(product: product)
                           ],
                         ),
                 ),
@@ -47,24 +58,9 @@ class Body extends StatelessWidget {
   }
 }
 
-class Description extends StatelessWidget {
-  const Description({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
 
-  final Product product;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-      child: Text(
-        product.description,
-        style: TextStyle(height: 1.5),),
-    );
-  }
-}
+
 
 
 
